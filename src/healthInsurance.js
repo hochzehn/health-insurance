@@ -3,6 +3,8 @@ var healthInsurance = function (record) {
     var healthInsuranceBaseRate = 14.0;
     var healthInsuranceWithSickPayRate = 14.6;
 
+    var MINIMUM_INCOME = 2231.25;
+
     /**
      * Return health insurance rates for a given health insurance company.
      *
@@ -59,7 +61,9 @@ var healthInsurance = function (record) {
         var healthInsuranceRate = (record.withSickPay) ? healthInsuranceWithSickPayRate : healthInsuranceBaseRate;
         var healthInsuranceAdditionalRate = rates.healthInsuranceAdditionalRate;
 
-        return calculateContributions(record.income, nursingCareRate, healthInsuranceRate, healthInsuranceAdditionalRate);
+        var income = Math.max(record.income, MINIMUM_INCOME);
+
+        return calculateContributions(income, nursingCareRate, healthInsuranceRate, healthInsuranceAdditionalRate);
     }
 
     /**
