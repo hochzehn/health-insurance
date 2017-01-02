@@ -3,11 +3,16 @@ describe("healthInsurance", function () {
 
     const MINIMUM_INCOME = 2231.25;
 
+    var income;
+
     describe("when earning minimum income", function() {
+        beforeEach(function() {
+            income = MINIMUM_INCOME;
+        });
 
         it("should calculate health insurance contribution without sick pay", function () {
             var result = subject({
-                income: MINIMUM_INCOME,
+                income: income,
                 age: 25,
                 hasChildren: false,
                 insuranceCompany: 'tk'
@@ -22,7 +27,7 @@ describe("healthInsurance", function () {
 
         it("should calculate health insurance contribution with sick pay", function () {
             var result = subject({
-                income: MINIMUM_INCOME,
+                income: income,
                 age: 25,
                 hasChildren: false,
                 withSickPay: true,
@@ -38,7 +43,7 @@ describe("healthInsurance", function () {
 
         it("should calculate health insurance contribution with children", function () {
             var result = subject({
-                income: MINIMUM_INCOME,
+                income: income,
                 age: 25,
                 hasChildren: true,
                 insuranceCompany: 'tk'
@@ -53,7 +58,7 @@ describe("healthInsurance", function () {
 
         it("should calculate health insurance contribution younger than 23", function () {
             var result = subject({
-                income: MINIMUM_INCOME,
+                income: income,
                 age: 22,
                 hasChildren: false,
                 insuranceCompany: 'tk'
