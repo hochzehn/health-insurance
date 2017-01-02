@@ -1,6 +1,6 @@
 {
   "name": "health-insurance",
-  "description": "health-insurance contribution calculation library",
+  "description": "Calculate health insurance contribution for self-employed workers in Germany.",
   "repository": "https://github.com/hochzehn/health-insurance",
   "license": "MIT",
   "version": "0.1.0",

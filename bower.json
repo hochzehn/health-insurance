@@ -1,5 +1,6 @@
 {
   "name": "health-insurance",
+  "description": "Calculate health insurance contribution for self-employed workers in Germany.",
   "version": "0.1.0",
   "main": "dist/health-insurance.js",
   "ignore": ["*", "!dist/*"]
