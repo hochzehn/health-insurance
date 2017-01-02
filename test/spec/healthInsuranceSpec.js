@@ -8,7 +8,7 @@ describe("healthInsurance", function () {
 
     describe("when earning less than minimum income", function() {
         beforeEach(function() {
-            income = MINIMUM_INCOME - 1000;
+            income = MINIMUM_INCOME - 10;
         });
 
         it("should calculate health insurance contribution without sick pay", function () {
@@ -209,7 +209,7 @@ describe("healthInsurance", function () {
 
     describe("when earning more than maximum income", function() {
         beforeEach(function() {
-            income = MAXIMUM_INCOME + 1000;
+            income = MAXIMUM_INCOME + 10;
         });
 
         it("should calculate health insurance contribution without sick pay", function () {
