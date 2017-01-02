@@ -1,5 +1,8 @@
 var healthInsurance = function (record) {
 
+    var healthInsuranceBaseRate = 14.0;
+    var healthInsuranceWithSickPayRate = 14.6;
+
     /**
      * Return health insurance rates for a given health insurance company.
      *
@@ -7,27 +10,24 @@ var healthInsurance = function (record) {
      *
      * @param company
      *
-     * @returns {{healthInsuranceWithSickPay: *, healthInsuranceWithoutSickPay: *, nursingCareInsurance: *, nursingCareInsuranceWithPenalty: *}}
+     * @returns {{healthInsuranceAdditionalRate: *, nursingCareInsurance: *, nursingCareInsuranceWithPenalty: *}}
      */
     function getRates(company) {
-        var healthInsuranceWithSickPay;
-        var healthInsuranceWithoutSickPay;
+        var healthInsuranceAdditionalRate;
         var nursingCareInsurance;
         var nursingCareInsuranceWithPenalty;
 
         switch (company) {
             case 'tk':
                 // https://www.tk.de/tk/versichert-als-selbststaendige/beitraege-selbststaendige/beitragssaetze-und-beitraege-selbststaendige/816202
-                healthInsuranceWithSickPay = 15.6;
-                healthInsuranceWithoutSickPay = 15.0;
+                healthInsuranceAdditionalRate = 1.0;
                 nursingCareInsurance = 2.55;
                 nursingCareInsuranceWithPenalty = 2.8;
                 break;
         }
 
         return {
-            healthInsuranceWithSickPay: healthInsuranceWithSickPay,
-            healthInsuranceWithoutSickPay: healthInsuranceWithoutSickPay,
+            healthInsuranceAdditionalRate: healthInsuranceAdditionalRate,
             nursingCareInsurance: nursingCareInsurance,
             nursingCareInsuranceWithPenalty: nursingCareInsuranceWithPenalty
         }
@@ -55,9 +55,10 @@ var healthInsurance = function (record) {
         var rates = getRates(record.insuranceCompany);
 
         var nursingCareRate = hasToPayNursingCarePenalty(record) ? rates.nursingCareInsuranceWithPenalty : rates.nursingCareInsurance;
-        var healthInsuranceRate = rates.healthInsuranceWithoutSickPay;
+        var healthInsuranceRate = healthInsuranceBaseRate;
+        var healthInsuranceAdditionalRate = rates.healthInsuranceAdditionalRate;
 
-        return calculateContributions(record.income, nursingCareRate, healthInsuranceRate);
+        return calculateContributions(record.income, nursingCareRate, healthInsuranceRate, healthInsuranceAdditionalRate);
     }
 
     /**
@@ -69,9 +70,9 @@ var healthInsurance = function (record) {
      *
      * @returns {{totalContribution: number, nursingCareInsuranceContribution: number, healthInsuranceContribution: number}}
      */
-    function calculateContributions(income, nursingCareRate, healthInsuranceRate) {
+    function calculateContributions(income, nursingCareRate, healthInsuranceRate, healthInsuranceAdditionalRate) {
         var nursingCareInsuranceContribution = calculateContribution(income, nursingCareRate);
-        var healthInsuranceContribution = calculateContribution(income, healthInsuranceRate);
+        var healthInsuranceContribution = calculateContribution(income, healthInsuranceRate) + calculateContribution(income, healthInsuranceAdditionalRate);
 
         return {
             totalContribution: healthInsuranceContribution + nursingCareInsuranceContribution,
