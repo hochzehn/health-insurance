@@ -81,14 +81,14 @@ var healthInsurance = function (record) {
         var healthInsuranceContribution = calculateContribution(income, healthInsuranceRate) + calculateContribution(income, healthInsuranceAdditionalRate);
 
         return {
-            totalContribution: healthInsuranceContribution + nursingCareInsuranceContribution,
+            totalContribution: round(healthInsuranceContribution + nursingCareInsuranceContribution),
             nursingCareInsuranceContribution: nursingCareInsuranceContribution,
             healthInsuranceContribution: healthInsuranceContribution
         };
     }
 
     /**
-     * There might be rounding problems in here as mentioned in http://stackoverflow.com/a/11832950/1824988
+     *
      *
      * @param income
      * @param rate
@@ -96,9 +96,19 @@ var healthInsurance = function (record) {
      * @returns {number}
      */
     function calculateContribution(income, rate) {
-        var result = income * rate;
-        result = Math.round(result) / 100;
+        var result = income * rate / 100;
+        result = round(result);
         return result;
+    }
+
+    /**
+     * There might be rounding problems in here as mentioned in http://stackoverflow.com/a/11832950/1824988
+     *
+     * @param result
+     * @returns {number}
+     */
+    function round(result) {
+        return Math.round(result * 100) / 100;
     }
 
     return calculate(record);
