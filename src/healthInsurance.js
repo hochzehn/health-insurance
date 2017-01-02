@@ -68,6 +68,7 @@ var healthInsurance = function (record) {
      * @param income
      * @param nursingCareRate
      * @param healthInsuranceRate
+     * @param healthInsuranceAdditionalRate
      *
      * @returns {{totalContribution: number, nursingCareInsuranceContribution: number, healthInsuranceContribution: number}}
      */
