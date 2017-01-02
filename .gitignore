@@ -1,0 +1,8 @@
+# IDE files
+/.idea
+
+# Dependencies
+/node_modules
+
+# Generated files
+/test-reports

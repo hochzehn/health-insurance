@@ -1,0 +1,6 @@
+{
+  "name": "health-insurance",
+  "version": "0.1.0",
+  "main": "dist/health-insurance.js",
+  "ignore": ["*", "!dist/*"]
+}
