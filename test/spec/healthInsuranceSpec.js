@@ -18,4 +18,20 @@ describe("healthInsurance", function () {
         });
     });
 
+    it("should calculate health insurance contribution for minimum income", function () {
+        var result = subject({
+            income: MINIMUM_INCOME,
+            age: 25,
+            hasChildren: false,
+            withSickPay: true,
+            insuranceCompany: 'tk'
+        });
+
+        expect(result).toEqual({
+            totalContribution: 410.55,
+            nursingCareInsuranceContribution: 62.48,
+            healthInsuranceContribution: 348.07
+        });
+    });
+
 });

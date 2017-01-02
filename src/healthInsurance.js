@@ -55,7 +55,8 @@ var healthInsurance = function (record) {
         var rates = getRates(record.insuranceCompany);
 
         var nursingCareRate = hasToPayNursingCarePenalty(record) ? rates.nursingCareInsuranceWithPenalty : rates.nursingCareInsurance;
-        var healthInsuranceRate = healthInsuranceBaseRate;
+
+        var healthInsuranceRate = (record.withSickPay) ? healthInsuranceWithSickPayRate : healthInsuranceBaseRate;
         var healthInsuranceAdditionalRate = rates.healthInsuranceAdditionalRate;
 
         return calculateContributions(record.income, nursingCareRate, healthInsuranceRate, healthInsuranceAdditionalRate);
