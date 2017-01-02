@@ -39,6 +39,9 @@ Include `bower_components/health-insurance/dist/health-insurance.min.js`.
 - `withSickPay`: `boolean` whether insurance includes sick pay (default `false`)
 - `insuranceCompany`: `string` code of an insurance company (see below)
 
+In the calculation result all values are _monthly_ contribution amounts. `totalContribution` is sum of 
+`healthInsuranceContribution` and `nursingCareInsuranceContribution`.
+
 ### Insurance companies
 
 Supported insurance companies are
