@@ -58,6 +58,12 @@ Code coverage report can be found in `coverage/PhantomJS 2.1.1 (Linux 0.0.0)/ind
 
 ## Publish
     
+### Register (once)
+
+    bin/dist/bower.sh register health-insurance https://github.com/hochzehn/health-insurance.git
+    
+### Update dist files (for every release)
+    
     bin/dist/dist.sh
 
 [tk-web]: https://www.tk.de/
