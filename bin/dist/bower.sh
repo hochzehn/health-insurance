@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 docker build -t bower -f docker/bower/Dockerfile .
 
 docker run \

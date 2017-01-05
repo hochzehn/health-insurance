@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 DIR=$1
 
 docker run \

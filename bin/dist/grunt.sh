@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 PROJECT_NAME=$(basename $PWD)
 TOOL_NAME="$PROJECT_NAME-grunt"
 

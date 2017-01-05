@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 _term() {
   kill -TERM "$child" 2>/dev/null
 }
